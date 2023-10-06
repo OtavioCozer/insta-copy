@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function Post({ id }: { id: string }) {
     const imageLoader = ({ src }: { src: string }) => {
         // console.log('post', src)
-        return `http://localhost:3000/api/image?id=${src}`
+        return `${document.location.origin}/api/image?id=${src}`
     }
 
     return (
