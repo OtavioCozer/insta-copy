@@ -106,7 +106,7 @@ export default function Login() {
         </div>
         <div className='flex flex-row justify-center gap-3'>
           <span>English</span>
-          <span>&copy; 2023 Instagram from Meta</span>
+          <span>2023 Instagram from Meta</span>
         </div>
 
 
