@@ -1,0 +1,82 @@
+.instagramLogo {
+    background-image: url(https://static.cdninstagram.com/rsrc.php/v3/yS/r/ajlEU-wEDyo.png);
+    background-position: 0px -52px;
+    background-size: auto;
+    width: 175px;
+    height: 51px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.inputContainer{
+	position:relative;
+	margin-bottom:25px;
+}
+
+.inputContainer label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color: rgb(var(--foreground-rgb));	
+    pointer-events: none;
+	transition: all 0.5s ease-in-out;
+}
+
+.inputContainer input{ 
+    border:0;
+    border-bottom:1px solid #555;  
+    background:transparent;
+    width:100%;
+    padding:3px 0 0px 0;
+    font-size:16px;
+    color: rgb(var(--foreground-rgb));	
+}
+
+.inputContainer input:focus{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid #e74c3c;	
+}
+
+.inputContainer input:not(:placeholder-shown) ~ label {
+	top:-12px;
+	font-size:12px;	
+}
+
+.inputContainer input:focus ~ label {
+	top:-12px;
+	font-size:12px;	
+}
+
+.submitButton {
+    border-radius: 8px;
+    background-color: rgba(0, 149, 246, 1);
+    color: white;
+    display: block;
+    width: 100%;
+}
+
+.divImage {
+    background-image: url(/images/home-phones.png);
+    width: 380.32px;
+    height: 581.15px;
+    background-size: 468.32px 634.15px;
+    background-position: -44px 0;
+}
+
+.imageClass {
+    position: absolute;
+    top: 26px;
+    left: 114px;
+}
+
+.imagesContainer {
+    position: relative;
+}
+
+@media(max-width: 870px) {
+    .imagesContainer {
+        display: none;
+    }
+}

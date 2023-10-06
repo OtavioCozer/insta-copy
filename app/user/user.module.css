@@ -1,0 +1,11 @@
+.navbar {
+    width: var(--nav-narrow-width);
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+}
+
+.timeline {
+    margin-left: auto;
+    width: calc(100% - var(--nav-narrow-width));
+}
