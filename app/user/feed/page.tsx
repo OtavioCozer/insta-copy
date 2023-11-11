@@ -1,23 +1,28 @@
 'use client'
 
-import { getData } from "@/app/_lib/http"
+import { getFeed } from "@/app/lib/http"
 import Post from "./post"
 import { useCallback, useEffect, useState } from "react"
 
-export default function Dashboard() {
+export default function Feed() {
+  const [page, setPage] = useState<number>(0);
   const [ids, setIds] = useState<string[]>([]);
+  let loading = false;
 
   const onScroll = useCallback((event: any) => {
     const scrolled = window.innerHeight + window.scrollY
     const bodyHeight = document.body.scrollHeight
 
-    if (scrolled % bodyHeight === 0) {
-      console.log(2, ids.length)
-      getData(`/api/images?length=${ids.length}`).then(v => v.json()).then((v: string[]) =>
+
+    if (scrolled % bodyHeight === 0 && !loading) {
+      loading = true
+      getFeed(page, 3).then(v => v.json()).then(v => {
         setIds(prev => [...prev, ...v])
-      )
+        setPage(prev => prev + 1)
+        loading = false
+      })
     }
-  }, [ids])
+  }, [page])
 
   useEffect(() => {
     //add eventlistener to window
@@ -29,16 +34,19 @@ export default function Dashboard() {
   }, [onScroll]);
 
   useEffect(() => {
-    console.log(1, ids.length)
-    getData(`/api/images?length=${ids.length}`).then(v => v.json()).then(v =>
-      setIds(prev => [...prev, ...v])
-    )
+    if (!loading) {
+      loading = true
+      getFeed(page, 3).then(v => v.json()).then(v => {
+        setIds([...v])
+        setPage(1)
+        loading = false
+      })
+    }
 
   }, []);
 
   return (
     <div className="flex flex-col items-center gap-52 m-10">
-      {ids.length}
       {ids.map((v, k) => <Post id={v} key={k} />)}
     </div>
   )

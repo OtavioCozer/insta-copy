@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function NavBar(props: {}) {
     return (
@@ -13,14 +14,16 @@ export default function NavBar(props: {}) {
                     height={24}
                     priority
                 />
-                <Image
-                    src="/home.svg"
-                    alt="Home Logo"
-                    //   className="dark:invert"
-                    width={24}
-                    height={24}
-                    priority
-                />
+                <Link href={'/login'}>
+                    <Image
+                        src="/home.svg"
+                        alt="Home Logo"
+                        //   className="dark:invert"
+                        width={24}
+                        height={24}
+                        priority
+                    />
+                </Link>
                 <Image
                     src="/look.svg"
                     alt="Look Logo"
@@ -69,17 +72,18 @@ export default function NavBar(props: {}) {
                     height={24}
                     priority
                 />
-                <Image
-                    src="/profile.jpg"
-                    alt="profile Logo"
-                    //   className="dark:invert"
-                    width={24}
-                    height={24}
-                    priority
-                    className='rounded-full'
-                />
-
-            </div>
+                <Link href={'/user/profile'}>
+                    <Image
+                        src="/profile.jpg"
+                        alt="profile Logo"
+                        //   className="dark:invert"
+                        width={24}
+                        height={24}
+                        priority
+                        className='rounded-full'
+                    />
+                </Link>
+            </div >
         </>
     )
 }

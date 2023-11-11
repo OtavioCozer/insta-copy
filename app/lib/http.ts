@@ -11,16 +11,13 @@ export async function postData(url = "", data = {}) {
     })
 }
 
-export async function getData(url = "", params = {}) {
-    // url += '?'
-    // for (const [key, value] of Object.entries(params)) {
-    //     url += url + `${key}=${value}`
-    // }
-    return fetch(document.location.origin + url, {
+export async function getFeed(page: number, page_size: number) {
+    return fetch(`${document.location.origin}/api/feed?page=${page}&page_size=${page_size}`, {
         method: 'GET',
         mode: 'same-origin',
         headers: {
             "Content-Type": 'application/json'
         },
+
     })
 }

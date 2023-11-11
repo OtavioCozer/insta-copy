@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.441.0",
+    "@aws-sdk/client-s3": "^3.441.0",
+    "@aws-sdk/lib-dynamodb": "^3.441.0",
     "@types/node": "20.6.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -17,7 +20,9 @@
     "eslint-config-next": "13.4.19",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.1.0",
-    "next": "13.4.19",
+    "next": "^13.5.5",
+    "next-auth": "^4.24.4",
+    "pg": "^8.11.3",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -25,6 +30,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.3"
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/pg": "^8.10.7"
   }
 }

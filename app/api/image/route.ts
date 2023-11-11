@@ -1,28 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getClient } from '../../_lib/client'
-import { ObjectId } from "mongodb";
+import {
+  S3Client,
+  GetObjectCommand,
+  S3ClientConfig,
+} from "@aws-sdk/client-s3";
 
 export async function GET(request: NextRequest) {
-  let image
+  const s3Client = new S3Client()
+  const bucketName = 'my-insta-user'
+
   const searchParams = request.nextUrl.searchParams
-  const objId = new ObjectId(searchParams.get("id") || '')
+  const key = searchParams.get("id") || ''
 
-  const client = getClient()
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    const photos = await client.db("Instadb").collection("photos").find({ _id: objId })
+  // Read the object.
+  const { Body } = await s3Client.send(
+    new GetObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+    })
+  );
 
-    for await (const doc of photos) {
-      image = doc.binData.buffer
-    }
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-
-  const response = new NextResponse(image)
+  const response = new NextResponse(await Body?.transformToByteArray())
   response.headers.set('content-type', 'image/jpg');
   return response;
 }

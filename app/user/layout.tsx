@@ -1,7 +1,11 @@
 import NavBar from './navbar'
 import styles from './user.module.css'
+import { auth } from '@/app/api/auth/[...nextauth]/route'
+import SignOut from './signout'
 
-export default function UserLayout({ children, }: { children: React.ReactNode }) {
+export default async function UserLayout({ children, }: { children: React.ReactNode }) {
+    const session = await auth()
+    console.log(session)
     return (
         <>
             <div className="min-h-screen flex">
@@ -9,6 +13,7 @@ export default function UserLayout({ children, }: { children: React.ReactNode })
                     <NavBar />
                 </div>
                 <div className={styles.timeline}>
+                    <SignOut />
                     {children}
                 </div>
             </div>
